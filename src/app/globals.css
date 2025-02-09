@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 97%;
+    --foreground: 240 10% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 4%;
+    --primary: 230 27% 38%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 260 20% 96%;
+    --secondary-foreground: 230 27% 38%;
+    --muted: 260 10% 92%;
+    --muted-foreground: 240 5% 84%;
+    --accent: 280 9% 85%;
+    --accent-foreground: 230 27% 38%;
+    --border: 260 10% 92%;
+    --input: 260 20% 96%;
+    --ring: 230 27% 38%;
+    --radius: 1rem;
+  }
+ 
+  .dark {
+    --background: rgb(68, 72, 124);
+    --foreground: rgb(253, 253, 254);
+    --card: rgb(68, 72, 124);
+    --card-foreground: rgb(253, 253, 254);
+    --popover: rgb(68, 72, 124);
+    --popover-foreground: rgb(253, 253, 254);
+    --primary: rgb(253, 253, 254);
+    --primary-foreground: rgb(68, 72, 124);
+    --secondary: rgb(218, 212, 222);
+    --secondary-foreground: rgb(253, 253, 254);
+    --muted: rgb(218, 212, 222);
+    --muted-foreground: rgb(199, 188, 206);
+    --accent: rgb(218, 212, 222);
+    --accent-foreground: rgb(253, 253, 254);
+    --border: rgb(218, 212, 222);
+    --input: rgb(218, 212, 222);
+    --ring: rgb(199, 188, 206);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border/20;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* 玻璃拟态效果 */
+.glass-card {
+  @apply backdrop-blur-lg bg-white/80 dark:bg-gray-900/80 relative;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(243, 242, 250, 0.5),
+    rgba(231, 230, 237, 0.3)
+  );
+  opacity: 0.1;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* 阴影效果 */
+.shadow-soft {
+  box-shadow: 
+    0 0 0 1px rgba(68, 72, 124, 0.03),
+    0 2px 4px rgba(68, 72, 124, 0.03),
+    0 4px 8px rgba(68, 72, 124, 0.03),
+    0 8px 16px rgba(68, 72, 124, 0.03);
+  transition: box-shadow 0.3s ease;
+}
+
+.shadow-soft:hover {
+  box-shadow: 
+    0 0 0 1px rgba(68, 72, 124, 0.04),
+    0 4px 8px rgba(68, 72, 124, 0.04),
+    0 8px 16px rgba(68, 72, 124, 0.04),
+    0 16px 32px rgba(68, 72, 124, 0.04);
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  @apply w-1.5;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground;
+}
+
+/* 文本选择效果 */
+::selection {
+  @apply bg-primary/10 text-current;
+}
+
+/* 动画效果 */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* 渐变文字 */
+/* .gradient-text {
+  background: linear-gradient(135deg, rgb(68, 72, 124), rgb(119, 123, 175));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+} */
+.gradient-text {
+  background: linear-gradient(135deg, rgb(30, 144, 255), rgb(0, 191, 255));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* 优雅的转场效果 */
+.transition-elegant {
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 导航项悬停效果 */
+.nav-item {
+  @apply relative transition-colors duration-300;
+}
+
+.nav-item::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary/20 
+    transform scale-x-0 origin-right transition-transform duration-300;
+}
+
+.nav-item:hover::after {
+  @apply scale-x-100 origin-left;
+}
+
+/* 性能优化 */
+.hardware-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+  will-change: transform;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .shadow-soft {
+    box-shadow: 
+      0 0 0 1px rgba(68, 72, 124, 0.02),
+      0 2px 4px rgba(68, 72, 124, 0.02);
+  }
+}
