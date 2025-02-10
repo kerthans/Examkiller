@@ -13,9 +13,6 @@ const nextConfig = {
     ];
   },
   // 添加这个配置
-  experimental: {
-    forceSwcTransforms: true,
-  },
   // 图像配置
   images: {
     domains: ['examkiller.top'],

@@ -19,40 +19,8 @@ export function RegisterForm() {
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsLoading(true);
-    setError("");
-    setSuccess("");
-
-    const formData = new FormData(event.currentTarget);
-    const username = formData.get("username") as string;
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const confirmPassword = formData.get("confirmPassword") as string;
-
-    if (password.length < 6) {
-      setError("密码长度不能少于6位");
-      setIsLoading(false);
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setError("两次输入的密码不一致");
-      setIsLoading(false);
-      return;
-    }
-
-    try {
-      await register(username, email, password);
-      setSuccess("注册成功！即将跳转...");
-      setTimeout(() => router.push("/dashboard"), 1500);
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError("注册失败，请稍后重试");
-      }
-    } finally {
-      setIsLoading(false);
-    }
+    await register();
+    router.push("/dashboard");
   }
 
   return (

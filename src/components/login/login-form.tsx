@@ -19,26 +19,8 @@ export function LoginForm() {
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsLoading(true);
-    setError("");
-    setSuccess("");
-
-    const formData = new FormData(event.currentTarget);
-    const username = formData.get("username") as string;
-    const password = formData.get("password") as string;
-
-    try {
-      await login(username, password);
-      setSuccess("登录成功！即将跳转...");
-      setTimeout(() => router.push("/dashboard"), 1500);
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError("登录失败，请稍后重试");
-      }
-    } finally {
-      setIsLoading(false);
-    }
+    await login();
+    router.push("/dashboard");
   }
 
   return (

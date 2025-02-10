@@ -35,7 +35,7 @@ import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import Sidebar from "@/components/dashboard/sidebar";
-
+import Link from 'next/link';
 const stats = [
   {
     name: "在学课程",
@@ -131,10 +131,12 @@ export default function MyCoursesContent() {
               <h1 className="text-3xl font-bold text-zinc-900">我的课程</h1>
               <p className="mt-2 text-zinc-600">管理和追踪你的学习进度</p>
             </div>
+            <Link href="/dashboard/new">
             <Button className="gap-2">
               <BookOpen className="w-4 h-4" />
               添加课程
             </Button>
+            </Link>
           </div>
 
           {/* 统计卡片 */}
@@ -200,6 +202,7 @@ export default function MyCoursesContent() {
           {/* 课程列表 */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {courses.map((course) => (
+              <Link href={`/dashboard/study`} key={course.id}>
               <Card key={course.id} className="group">
                 <CardHeader className="pb-3">
                   <div className="flex items-start justify-between">
@@ -255,6 +258,7 @@ export default function MyCoursesContent() {
                   </div>
                 </CardContent>
               </Card>
+              </Link>
             ))}
           </div>
         </div>

@@ -105,6 +105,7 @@ export default function Sidebar({ className, selectedItem }: SidebarProps) {
     <>
       {/* Logo */}
       <div className="flex items-center h-16 px-6 border-b border-zinc-100">
+      <Link href="/dashboard">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-gradient-to-br from-rose-50 to-white rounded-xl flex items-center justify-center shadow-md hover:from-rose-100 transition-all duration-300">
             <Image
@@ -119,6 +120,7 @@ export default function Sidebar({ className, selectedItem }: SidebarProps) {
             <span className="text-lg font-semibold text-slate-900">ExamKiller</span>
           )}
         </div>
+        </Link>
       </div>
 
       {/* Navigation */}

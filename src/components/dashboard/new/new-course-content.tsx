@@ -10,7 +10,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import Sidebar from "@/components/dashboard/sidebar";
-
+import Link from 'next/link';
 interface Material {
   name: string;
   type: string;
@@ -180,7 +180,7 @@ const NewCourseContent: React.FC = () => {
 
   return (
     <div className="flex h-screen overflow-hidden bg-zinc-50">
-      <Sidebar className="flex-shrink-0" />
+      <Sidebar className="flex-shrink-0" selectedItem="new"/>
       
       <main className="flex-1 overflow-y-auto">
         <div className="container mx-auto px-4 py-6 max-w-6xl">
@@ -352,12 +352,14 @@ const NewCourseContent: React.FC = () => {
 
           {/* 底部按钮 */}
           <div className="mt-8 flex justify-end gap-4">
+          <Link href="/dashboard/mycourses">
             <Button variant="outline">
               保存草稿
             </Button>
             <Button>
               创建课程
             </Button>
+            </Link>
           </div>
         </div>
       </main>
