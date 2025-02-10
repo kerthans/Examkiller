@@ -8,12 +8,11 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://examkiller.top/api/:path*',
+        destination: 'http://101.201.246.5:8000/api/:path*',
       },
     ];
   },
   // 添加这个配置
-  webSocketTimeout: 300000,
   experimental: {
     forceSwcTransforms: true,
   },
